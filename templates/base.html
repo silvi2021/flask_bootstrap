@@ -9,6 +9,9 @@
   </head>
   <body class="d-flex flex-column h-100">
     {% include 'includes/navbar.html' %}
+    {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
     <div class="container mt-5">
       {% block body %}
       {% endblock %}
