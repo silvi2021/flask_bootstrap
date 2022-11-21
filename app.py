@@ -28,8 +28,7 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        picture = request.form['picture']
-        
+        picture = request.form['picture']        
         if not title:
             flash('El titulo es obligatorio')
         elif not content:
@@ -38,8 +37,7 @@ def create():
             message = Message(title = title, content = content, picture = picture)
             db.session.add(message)
             db.session.commit()
-            return redirect(url_for('index'))
-                   
+            return redirect(url_for('index'))                  
     return render_template('create.html')
 
 @app.route('/<id>/update', methods = ('GET', 'POST'))
@@ -54,22 +52,28 @@ def update(id):
             return redirect('/')
     return render_template('update.html', message = message)
 
+@app.route('/delete', methods = ['POST'])
+def delete():
+    id = request.form['id']
+    message = Message.query.filter_by(id=id).first()
+    db.session.delete(message)
+    db.session.commit()
+    flash('Mensaje eliminado')
+    return redirect('/')
+    
 
 @app.route('/usuario/<name>')
 def user(name):
     return render_template('user.html', name = name)
 
-
 @app.route('/usuario')
 def user_incognito():
     return render_template('user.html')    
-
 
 @app.route('/navegador')
 def browser():
     user_agent = request.headers.get('User_Agent')
     return f'Tu navegador es:{user_agent}'
-
 
 @app.route('/rutas')
 def routes():
