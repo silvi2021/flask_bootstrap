@@ -1,28 +1,12 @@
-from flask import Flask, request, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask import render_template
+from app.messages import bp
 
-app = Flask(__name__)
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-class Message(db.Model):
-    __tablename__ = 'messages'    
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    picture = db.Column(db.String(300))
-
-    def __repr__(self):
-        return f'<Message {self.title}>'
-
-@app.route('/')
+@bp.route('/')
 def index():
     messages = Message.query.all()
     return render_template('index.html', messages = messages)
 
-@app.route('/create', methods =('GET', 'POST'))
+@bp.route('/create', methods =('GET', 'POST'))
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -39,7 +23,7 @@ def create():
             return redirect(url_for('index'))                  
     return render_template('create.html')
 
-@app.route('/<id>/update', methods = ('GET', 'POST'))
+@bp.route('/<id>/update', methods = ('GET', 'POST'))
 def update(id):
     message = Message.query.filter_by(id = id).first()
     if request.method == 'POST':
@@ -51,7 +35,7 @@ def update(id):
             return redirect('/')
     return render_template('update.html', message = message)
 
-@app.route('/delete', methods = ['POST'])
+@bp.route('/delete', methods = ['POST'])
 def delete():
     id = request.form['id']
     message = Message.query.filter_by(id=id).first()
@@ -60,28 +44,3 @@ def delete():
     flash('Mensaje eliminado')
     return redirect('/')
     
-
-@app.route('/usuario/<name>')
-def user(name):
-    return render_template('user.html', name = name)
-
-@app.route('/usuario')
-def user_incognito():
-    return render_template('user.html')    
-
-@app.route('/navegador')
-def browser():
-    user_agent = request.headers.get('User_Agent')
-    return f'Tu navegador es:{user_agent}'
-
-@app.route('/rutas')
-def routes():
-    print(app.url_map)
-    return 'Revisa tu consola para ver las rutas'
-
-@app.errorhandler(404)
-def page_not_found(error):
-  return render_template('page_not_found.html'), 400
-
-
-
