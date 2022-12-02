@@ -63,6 +63,18 @@ Para ejecutar el servidor de desarrollo el comando es el siguiente
 flask --app app --debug run
 ```
 
+## MVC (Model-View-Controller)
+
+![MVC](https://cdn.educba.com/academy/wp-content/uploads/2019/04/what-is-mvc-design-pattern.jpg.webp)
+
+Es una arquitectura para separar las responsabilidades en la manipulación de las solicitudes y respuestas. Quien recibe las solicitudes es el Controlador o en flask,las rutas.Los controladores se encargan de revisar que la solicitud cumpla con las características necesarias para entregar una respuesta acorde (que tenga todos los datos). Si el controlador lo permite,se podría opcionalmente,llamar al modelo para obtener o modificar los datos de la BBDD(base de datos). Y finalmente,enviar una respuesta que contenga la presentación de la aplicación. En nuestro caso, la capa de presentación comúnmente comocida como Vistas (Views) se llaman Templates.
+
+Por lo tanto, en flask el MVC podría ser adaptado como MTR (Modelo, Template,Ruta),pero es lo mismo en términos de separar la responsabilidad.
+
+
+
+
+
 
 
 
