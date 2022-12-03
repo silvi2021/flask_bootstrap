@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} User page {% endblock %}
+
+{% block body %}
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container">
+    <h1>Usuarios</h1>   
+    {% for user in users %}
+    {% if loop.index0 % 3 == 0 %}
+  <div class="row">
+    {% endif %}
+      <div class="col">  
+        <div class='card m-3' >      
+            <div class="card-body">          
+            <h3 class="card-title">{{ user['username'] }}</h3>         
+            <p class="card-text">{{ user['email'] }}</p>   
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}    

@@ -11,6 +11,11 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
 
     # Register blueprints here
+    # Auth blueprint
+    from app.auth import bp as auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+
+
     # Memes blueprint
     from app.memes import bp as memes_bp
     app.register_blueprint(memes_bp, url_prefix='/memes')
