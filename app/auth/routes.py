@@ -53,32 +53,12 @@ def login():
             flash('usuario o password incorrecto')                            
     return render_template('auth/login.html')
 
-@bp.route('/<id>/update', methods = ('GET', 'POST'))
-def update(id):
-    message = Message.query.filter_by(id = id).first()
-    if request.method == 'POST':
-        if message:
-            message.title = request.form['title']  
-            message.content = request.form['content'] 
-            message.picture = request.form['picture']
-            db.session.commit() 
-            return redirect('/')
-    return render_template('messages/update.html', message = message)
-
-@bp.route('/delete', methods = ['POST'])
-def delete():
-    id = request.form['id']
-    message = Message.query.filter_by(id=id).first()
-    db.session.delete(message)
-    db.session.commit()
-    flash('Mensaje eliminado')
-    return redirect('/')  
 
 @bp.route('logout')
 @login_required
 def logout():
     logout_user()
     flash('Sesión cerrada')
-    return redirect('main/index')
+    return redirect('/auth/login')
   
 
