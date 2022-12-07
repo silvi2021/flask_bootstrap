@@ -1,27 +1,27 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %} User page {% endblock %}
+{% block title %}Flasky - Login{% endblock %}
 
 {% block body %}
-<h1 class="text-center"> Login</h1>
-<form method="post">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" name="email" id="email"
-           placeholder="Tu correo"
-           value="{{ request.form['email'] }}"
-           class="form-control">
-
-    
-    <label for="password" class="form-label">Escribe tu contraseña</label>
-    <input type="password" name="password" id="password"
-            placeholder="Tu contraseña"
-            value="{{ request.form['password'] }}"
-            class="form-control">
-
-    <input type="checkbox" name="remember_me" id="remember_me" value="{{ request.form['remember_me'] }}">
-     <label for="remember_me" class="form-label" >Mantener sesión</label>
-     <br>
-                            
-    <button type="submit" class="btn btn-primary mt-3">Login</button>
-</form>
-{% endblock %}    
+<div class="row">
+    <div class="col-md-3 offset-md-4">
+        <h1 class="text-center">Login</h1>
+        <form class="mb-3" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" placeholder="Correo de usuario" value="{{ request.form['email'] }}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" id="password" placeholder="Contraseña" value="{{ request.form['picture'] }}" class="form-control" required>        
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" name="remember_me" id="remember_me" value="{{ request.form['remember_me'] }}">
+                <label for="remember_me" class="form-check-label">Mantener sesión</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+        ¿No tienes usuario? Crea el tuyo <a href="{{ url_for('auth.register') }}">aquí</a>
+    </div>
+</div>
+{% endblock %}
