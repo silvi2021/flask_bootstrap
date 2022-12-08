@@ -7,5 +7,7 @@ class Message(db.Model):
     content = db.Column(db.Text, nullable=False)
     picture = db.Column(db.String(300))
 
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
     def __repr__(self):
         return f'<Message {self.title}>'

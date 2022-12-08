@@ -25,6 +25,7 @@ def create_app(config_class=Config):
     # Main blueprint
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
+    
     # Messages blueprint
     from app.messages import bp as messages_bp
     app.register_blueprint(messages_bp, url_prefix='/messages')

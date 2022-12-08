@@ -72,7 +72,15 @@ Es una arquitectura para separar las responsabilidades en la manipulación de la
 Por lo tanto, en flask el MVC podría ser adaptado como MTR (Modelo, Template,Ruta),pero es lo mismo en términos de separar la responsabilidad.
 
 
+## Tecnicas debugeo
 
+Para acceder a los atributos de cualquier instancia, es posible ejecutar lo siguiente en un template:
+
+```
+{{ message.id }}
+```
+
+Este mostrará cada mensaje el id de este.
 
 
 
