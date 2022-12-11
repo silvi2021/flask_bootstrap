@@ -5,7 +5,7 @@ from app.models.message import Message
 
 @bp.route('/')
 def index():
-    messages = Message.query.all()
+    messages = Message.query.order_by('id').all()
     return render_template('index.html', messages = messages)
 
 @bp.app_errorhandler(404)
