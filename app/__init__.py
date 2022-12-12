@@ -1,10 +1,15 @@
+import os
 from flask import Flask
-from config import Config
+from config import config
 from app.extensions import db, migrate, login_manager
 
-def create_app(config_class=Config):
+environment_config = os.getenv('ENVIRONMENT_CONFIG') or 'development'
+
+def create_app(config_class=environment_config):
+    print(config_class)
     app = Flask(__name__)
-    app.config.from_object(config_class)
+    app.config.from_object(config[config_class])
+   
 
     # Initialize Flask extensions here
     db.init_app(app)
