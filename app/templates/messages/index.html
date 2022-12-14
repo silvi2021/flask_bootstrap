@@ -19,7 +19,8 @@
             <img src="{{ message['picture']}}" class = 'card-img-top' alt="{{ message['title']}}"  >
             <div class="card-body">                   
             <h3 class="card-title">{{ message['title'] }}</h3>         
-            <p class="card-text">{{ message['content'] }}</p>         
+            <p class="card-text">{{ message['content'] }}</p>  
+            <p class="card-text">{{ message['price'] }}</p>        
             <a href="{{ url_for('messages.update', id = message.id)}}" class="btn btn-warning">Actualizar</a>         
             <form action="{{url_for('messages.delete')}}" method="post" onsubmit ="return confirm('tai seguro?')" class="d-inline">
               <input type="hidden" name="id" value="{{message.id}}">

@@ -3,24 +3,31 @@
 {% block title %} User page {% endblock %}
 
 {% block body %}
-<h1 class="text-center"> Agrega un nuevo mensaje</h1>
+<h1 class="text-center">Agrega un nuevo producto</h1>
 <form method="post">
-    <label for="title" class="form-label">Titulo</label>
+    <label for="title" class="form-label">Nombre</label>
     <input type="text" name="title" id="title"
-           placeholder="Titulo del mensaje"
+           placeholder="Nombre del Producto "
            value="{{ request.form['title'] }}"
-           class="form-control"></input>
-    <label for="picture" class="form-label">Foto del mensaje</label>
+            class="form-control">
+    <label for="picture" class="form-label">Foto del Producto</label>
     <input type="text" name="picture" id="picture"
-           placeholder="Agrega tu foto"
+           placeholder="Agrega tu Foto "
            value="{{ request.form['picture'] }}"
-           class="form-control"></input>
-    <label for="content" class="form-label">Contenido del mensaje</label>
+           class="form-control">
+      
+    <label for="content" class="form-label" >Descripción del Producto</label>
     <textarea name="content" id="content"
-              placeholder="Contenido del mensaje"
+              placeholder="Descripción"
               rows="15"
-              cols="60" class="form-control"
-              >{{ request.form['content'] }}</textarea>
-    <button type="submit" class="btn btn-primary">Submit</button>
+              cols="60"
+              class="form-control">{{ request.form['content'] }}</textarea>
+    <label for="price">Precio</label>  
+    <input type="text" name="price" id="price" class="form-control">    
+    
+    <label for="Link">Link de Pago</label>  
+    <input type="text" name="link" id="link" class="form-control">  
+ 
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
-{% endblock %}    
+{% endblock %}   
