@@ -13,24 +13,25 @@
     {% if loop.index0 % 3 == 0 %}
   <div class="row">
     {% endif %}
-
       <div class="col">  
         <div class='card m-3' >      
             <img src="{{ message['picture']}}" class = 'card-img-top' alt="{{ message['title']}}"  >
             <div class="card-body">          
             <h3 class="card-title">{{ message['title'] }}</h3>      
-            <p class="card-text">{{ message['content'] }}</p>         
+            <p class="card-text">{{ message['content'] }}</p>
+            {% if message['price'] %}
+            <h3 class="card-title">{{ "${:}".format(message['price']) }}</h3>
+            {% endif %}
+            {% if message.user == current_user %}         
             <a href="{{ url_for('messages.update', id = message.id)}}" class="btn btn-warning">Actualizar</a>         
             <form action="{{url_for('messages.delete')}}" method="post" onsubmit ="return confirm('Estás seguro?')" class="d-inline">
               <input type="hidden" name="id" value="{{message.id}}">
               <input type="submit" value="Eliminar" class="btn btn-danger">
             </form>
-            {% else %}
-            {% if message['link'] != 'None' %}
+            {% elif message['link'] != 'None' %}
             <a href="{{message['link']}}" class="btn btn-primary">comprar</a>
             {% endif %}
-            {% endif %}
-          </div>
+            </div> 
         </div>
       </div>
     {% endfor %}
