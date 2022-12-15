@@ -23,10 +23,13 @@
               class="form-control"
               >{{ message.content }}</textarea>
     <label for="price">Precio</label>  
-    <input type="text" name="price" id="price">
+    <input type="text"
+           name="price" id="price" 
+           value="{{ message.price }}">
+
 
     <label for="link">Link de Pago</label>  
-    <input type="text" name="link" id="link">
+    <input type="text" name="link" id="link" value="{{ message.link }}">
                
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
